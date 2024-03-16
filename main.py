@@ -1,11 +1,24 @@
+import psycopg
 
 class DatabaseOperations:
 
+    conn = None
     def connect(self):
-        pass
+        self.conn = psycopg.connect(
+            dbname=,
+            user=,
+            password=,
+            host=,
+            port=s
+        )
+
     #TODO: retrieves and displays all records from the students table
     def getAllStudents(self):
-        pass
+        if self.conn is None:
+            print("Not connected to database")
+            return
+
+        self.conn.execute("SELECT * FROM students")
 
     #TODO: inserts a new student records into the students table
     def addStudent(self, first_name, last_name, email, enrollment_date):
