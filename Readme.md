@@ -22,13 +22,20 @@ Once all of this is done the python script should be ready to run
 <h2>Running:</h2>
 To run this application simply change the global variables at the top of the script with values appropriate for you system
 
-After that you can simply run the python script
+After that you can simply run the python script using the following command
+```
+python3 main.py
+```
 
-You'll be greeted with a menu providing the following 4 option:
+You'll be greeted with a menu providing the following 5 option:
+```
 1 - Print all students
 2 - Add a student
 3 - Update a student's email address
 4 - Delete a student
+q - Exit
+```
+You can select any of these options and then follow the prompts. 
 
 <hr/>
-Youtube Link: 
+Youtube Link: https://youtu.be/DRKRlMQ-YuE
