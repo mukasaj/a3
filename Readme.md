@@ -10,7 +10,7 @@ The database must be created manually first.
 The following python packages will need to be installed:
 
 ```pip install psycopg```
-```pip install psycopg[binary,pool]```
+```pip install "psycopg[binary,pool]"```
 
 Once installed the global variables for DBNAME, USER, PASSWORD, HOST, PORT will need to be edited in main.py.
 These variables are located at the top of the script and have their values set to None.
