@@ -110,6 +110,8 @@ if __name__ == '__main__':
         # calling corresponding function
         if menu_choice == "1":
             all_students = databaseOperations.getAllStudents()
+            if all_students is None:
+                continue
             for row in all_students:
                 print(row)
 
