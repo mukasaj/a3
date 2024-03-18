@@ -42,6 +42,7 @@ class DatabaseOperations:
                 cursor.execute("SELECT * FROM students")
                 return cursor.fetchall()
         except Exception as e:
+            # rollback on failed transaction
             self.conn.rollback()
             print("Failed to delete student")
             print(e)
@@ -58,6 +59,7 @@ class DatabaseOperations:
                     "INSERT INTO students (first_name, last_name, email, enrollment_date) VALUES (%s, %s, %s, %s)",
                     (first_name, last_name, email, enrollment_date))
         except Exception as e:
+            # rollback on failed transaction
             self.conn.rollback()
             print("Failed to delete student")
             print(e)
@@ -72,6 +74,7 @@ class DatabaseOperations:
                 # using the UPDATE command to update an email for a given student_id
                 cursor.execute("UPDATE students SET email = %s WHERE student_id = %s", (new_email, student_id))
         except Exception as e:
+            # rollback on failed transaction
             self.conn.rollback()
             print("Failed to delete student")
             print(e)
@@ -86,6 +89,7 @@ class DatabaseOperations:
                 # Using delete command to delete a student with the given student_id
                 cursor.execute("DELETE FROM students WHERE student_id = %s", (student_id,))
         except Exception as e:
+            # rollback on failed transaction
             self.conn.rollback()
             print("Failed to delete student")
             print(e)
