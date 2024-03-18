@@ -18,40 +18,72 @@ class DatabaseOperations:
 
     # Connects to database and stores connection in shared connection variable
     def connect(self, dbname, user, password, host, port):
-        self.conn = psycopg.connect(
-            dbname=dbname,
-            user=user,
-            password=password,
-            host=host,
-            port=port
-        )
+        try:
+            self.conn = psycopg.connect(
+                dbname=dbname,
+                user=user,
+                password=password,
+                host=host,
+                port=port
+            )
+        except Exception as e:
+            print("Failed to connect to database")
+            print(e)
 
     def getAllStudents(self):
         if self.conn is None:
             print("Not connected to database")
             return
 
-        # executes SELECT query on database
-        with self.conn.cursor() as cursor:
-            cursor.execute("SELECT * FROM students")
-            return cursor.fetchall()
+        try:
+            # executes SELECT query on database
+            with self.conn.cursor() as cursor:
+                cursor.execute("SELECT * FROM students")
+                return cursor.fetchall()
+        except Exception as e:
+            print("Failed to delete student")
+            print(e)
 
     def addStudent(self, first_name, last_name, email, enrollment_date):
-        with self.conn.cursor() as cursor:
-            # executes INSERT statement to add student to Database
-            cursor.execute(
-                "INSERT INTO students (first_name, last_name, email, enrollment_date) VALUES (%s, %s, %s, %s)",
-                (first_name, last_name, email, enrollment_date))
+        if self.conn is None:
+            print("Not connected to database")
+            return
+
+        try:
+            with self.conn.cursor() as cursor:
+                # executes INSERT statement to add student to Database
+                cursor.execute(
+                    "INSERT INTO students (first_name, last_name, email, enrollment_date) VALUES (%s, %s, %s, %s)",
+                    (first_name, last_name, email, enrollment_date))
+        except Exception as e:
+            print("Failed to delete student")
+            print(e)
 
     def updateStudentEmail(self, student_id, new_email):
-        with self.conn.cursor() as cursor:
-            # executes UPDATE statement to update the email for a given student
-            cursor.execute("UPDATE students SET email = %s WHERE student_id = %s", (new_email, student_id))
+        if self.conn is None:
+            print("Not connected to database")
+            return
+
+        try:
+            with self.conn.cursor() as cursor:
+                # executes UPDATE statement to update the email for a given student
+                cursor.execute("UPDATE students SET email = %s WHERE student_id = %s", (new_email, student_id))
+        except Exception as e:
+            print("Failed to delete student")
+            print(e)
 
     def deleteStudent(self, student_id):
-        with self.conn.cursor() as cursor:
-            # executes DELETE statement to delete a given student
-            cursor.execute("DELETE FROM students WHERE student_id = %s", (student_id,))
+        if self.conn is None:
+            print("Not connected to database")
+            return
+
+        try:
+            with self.conn.cursor() as cursor:
+                # executes DELETE statement to delete a given student
+                cursor.execute("DELETE FROM students WHERE student_id = %s", (student_id,))
+        except Exception as e:
+            print("Failed to delete student")
+            print(e)
 
 
 if __name__ == '__main__':
