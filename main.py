@@ -38,6 +38,7 @@ class DatabaseOperations:
         try:
             # executes SELECT query on database
             with self.conn.cursor() as cursor:
+                # Using SELECT command to select all students from students table
                 cursor.execute("SELECT * FROM students")
                 return cursor.fetchall()
         except Exception as e:
@@ -51,7 +52,7 @@ class DatabaseOperations:
 
         try:
             with self.conn.cursor() as cursor:
-                # executes INSERT statement to add student to Database
+                # using INSERT command to add a student to the student table
                 cursor.execute(
                     "INSERT INTO students (first_name, last_name, email, enrollment_date) VALUES (%s, %s, %s, %s)",
                     (first_name, last_name, email, enrollment_date))
@@ -66,7 +67,7 @@ class DatabaseOperations:
 
         try:
             with self.conn.cursor() as cursor:
-                # executes UPDATE statement to update the email for a given student
+                # using the UPDATE command to update an email for a given student_id
                 cursor.execute("UPDATE students SET email = %s WHERE student_id = %s", (new_email, student_id))
         except Exception as e:
             print("Failed to delete student")
@@ -79,7 +80,7 @@ class DatabaseOperations:
 
         try:
             with self.conn.cursor() as cursor:
-                # executes DELETE statement to delete a given student
+                # Using delete command to delete a student with the given student_id
                 cursor.execute("DELETE FROM students WHERE student_id = %s", (student_id,))
         except Exception as e:
             print("Failed to delete student")
