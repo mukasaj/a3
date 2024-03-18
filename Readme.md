@@ -21,6 +21,7 @@ Once all of this is done the python script should be ready to run
 <hr/>
 <h2>Running:</h2>
 You can simply run the python script using the following command
+
 ```
 python3 main.py
 ```
